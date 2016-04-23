@@ -2,6 +2,7 @@ package com.team103.config
 
 import org.squeryl.PrimitiveTypeMode._
 import org.squeryl.Schema
+import org.squeryl.KeyedEntity
 import org.squeryl.annotations.Column
 import java.util.Date
 import java.sql.Timestamp
@@ -16,6 +17,6 @@ class Response(
   val timeStamp: Timestamp,
   val locX: Double,
   val locY: Double,
-  val value: Int) {
+  val value: Int) extends KeyedEntity[Long] {
 	  def this() = this(0,false,null,0,0,0)
 }

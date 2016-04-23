@@ -27,6 +27,9 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
     transaction{
       Repository.responses.insert(new Response(1,false,new Timestamp(System.currentTimeMillis()),0.458,7.523,10))
     }
+    transaction{
+      Repository.responses.where(a => a.id === 1)
+    }
   }
 
   post("/environment") {

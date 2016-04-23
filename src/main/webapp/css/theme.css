@@ -1,0 +1,20 @@
+/*
+ * AUTHOR: Team 103
+ * FILENAME: theme.css
+ * DESCRIPTION: This class contains the global style.
+ */
+
+body {
+  background-image: url("../img/background.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+#themeStyle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 0;
+}

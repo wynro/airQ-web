@@ -1,3 +1,9 @@
+/*
+ * AUTHOR: Team 103
+ * FILENAME: symptomsController.js
+ * DESCRIPTION: This file contains the "symptoms.html" controller.
+ */
+
 angular.module('AirQApp')
 
     .controller('symptomsCtrl', ['$scope','information','geolocation', function($scope,information,geolocation){
@@ -14,11 +20,9 @@ angular.module('AirQApp')
         $scope.itchy = "";
         $scope.airQuality = "";
 
-        geolocation.getLocation().then(function(data) {
-            $scope.coords = {
-                lat: data.coords.latitude,
-                long: data.coords.longitude
-            }
+        // take the user geolocation
+        geolocation.getLocation().then(function(data){
+            $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
         });
 
         // send the data info form to the information service
@@ -39,9 +43,7 @@ angular.module('AirQApp')
                 coords: $scope.coords
 
             };
-            debugger;
-            console.log(dataInfo);
-            
+
             information.sendInfo(dataInfo);
             
         }

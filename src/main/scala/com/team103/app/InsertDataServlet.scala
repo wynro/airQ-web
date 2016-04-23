@@ -9,6 +9,10 @@ import org.json4s.JsonAST._
 import org.json4s.MappingException
 import org.scalatra._
 import org.scalatra.json._
+import java.util.Date
+import java.sql.Timestamp
+import com.team103.config._
+import org.squeryl.PrimitiveTypeMode._
 
 
 /**
@@ -19,10 +23,16 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
   def logger = Logger[InsertDataServlet]
   protected implicit val jsonFormats: Formats = DefaultFormats
 
-  post("/enviroment") {
+  get("/*"){
+    transaction{
+      Repository.responses.insert(new Response(1,false,new Timestamp(System.currentTimeMillis()),0.458,7.523,10))
+    }
+  }
+
+  post("/environment") {
     try {
       val coordinates = extractCoords(parsedBody)
-      val enviroment = parsedBody.extract[Enviroment]//Extract symptoms from data body
+      val environment = parsedBody.extract[Environment]//Extract symptoms from data body
     } catch {
       case e:Exception => {
         logger.debug("Exception while parsing the body")

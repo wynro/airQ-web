@@ -1,7 +1,8 @@
 import com.team103.app._
-import com.team103.config.DatabaseInit
+import com.team103.config._
 import javax.servlet.ServletContext
 import org.scalatra._
+
 
 class ScalatraBootstrap extends LifeCycle with DatabaseInit {
 

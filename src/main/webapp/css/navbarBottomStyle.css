@@ -2,7 +2,9 @@
   max-width:140px;
   margin-top: -16px;
 }
-#navbarTop {
+#navbarBottom {
   background-color: #677bdf !important;
   border-color: #6262c3 !important;
+  margin: 0;
+  border-radius: 0;
 }

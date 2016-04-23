@@ -20,7 +20,6 @@ angular.module('AirQApp')
                         'Content-Type': 'application/json'
                     }
                 }).success(function (data) {
-                    callbackSuccess;
                 }).error(function (data) {
                 });
             }

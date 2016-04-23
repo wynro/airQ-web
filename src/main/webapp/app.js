@@ -4,7 +4,7 @@
  * DESCRIPTION: This class contains all states of the application.
  */
 
-angular.module('AirQApp', ['ui.router'])
+angular.module('AirQApp', ['ui.router','geolocation'])
 
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider

@@ -1,17 +1,17 @@
 package com.team103.app
 
-import com.team103.model._
+import com.team103.config._
 import com.team103.database.DatabaseSessionSupport
+import com.team103.model._
 import grizzled.slf4j.Logger
+import java.util.Date
+import java.sql.Timestamp
 import org.json4s.{DefaultFormats, Formats}
 import org.json4s.jackson.JsonMethods._
 import org.json4s.JsonAST._
 import org.json4s.MappingException
 import org.scalatra._
 import org.scalatra.json._
-import java.util.Date
-import java.sql.Timestamp
-import com.team103.config._
 import org.squeryl.PrimitiveTypeMode._
 
 
@@ -59,6 +59,10 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
     */
   private def extractCoords(implicit parsedBody:JValue):(Double,Double) = {
     val coordinates = parsedBody \ "coords"
-    ((coordinates \ "latitude").extract[Double],(coordinates \ "longitude").extract[Double])
+    ((coordinates \ "lat").extract[Double],(coordinates \ "long").extract[Double])
   }
+
+  /**
+    * Calculate formula for quality
+    */
 }

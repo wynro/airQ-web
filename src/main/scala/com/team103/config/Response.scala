@@ -1,11 +1,11 @@
 package com.team103.config
 
+import java.util.Date
+import java.sql.Timestamp
 import org.squeryl.PrimitiveTypeMode._
 import org.squeryl.Schema
 import org.squeryl.KeyedEntity
 import org.squeryl.annotations.Column
-import java.util.Date
-import java.sql.Timestamp
 
 /**
   * If isEvent == 1, then is event and value are 1,2,3...

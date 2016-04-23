@@ -1,11 +1,11 @@
 package com.team103.app
 
+import collection.mutable
+import javax.servlet.http.HttpServletRequest
 import org.scalatra._
-import scalate.ScalateSupport
 import org.fusesource.scalate.{ TemplateEngine, Binding }
 import org.fusesource.scalate.layout.DefaultLayoutStrategy
-import javax.servlet.http.HttpServletRequest
-import collection.mutable
+import scalate.ScalateSupport
 
 trait AircheckStack extends ScalatraServlet with ScalateSupport {
 

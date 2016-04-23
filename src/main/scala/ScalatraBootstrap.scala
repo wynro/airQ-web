@@ -1,8 +1,8 @@
 import com.team103.app._
 import com.team103.config._
+import javax.servlet.ServletContext
 import org.squeryl.Session
 import org.squeryl.SessionFactory
-import javax.servlet.ServletContext
 import org.scalatra._
 
 

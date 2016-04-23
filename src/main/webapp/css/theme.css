@@ -35,6 +35,15 @@ body {
   color: #fff;
 }
 
+button{
+  background-color: #677bdf;
+}
+
+button{
+  background-color: #6a98ff;
+  color: #fff;
+}
+
 #themeStyle p {
   margin: 0 10%;
   text-indent:5%;
@@ -45,4 +54,18 @@ body {
   content: " ";
   height: 100px;
   visibility: hidden;
+}
+
+.form-control {
+  width: 15%;
+}
+
+ul.example {
+  color: rgba(6, 6, 6, 0.46);
+  margin: 1%;
+  font-size: 85%;
+  list-style-type: square;
+}
+.example p {
+  margin: 0 0 5px;
 }

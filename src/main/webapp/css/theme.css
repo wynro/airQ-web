@@ -12,6 +12,7 @@ body {
   background-size: cover;
   font-family: 'Roboto', sans-serif;
 }
+
 #themeStyle {
   position: absolute;
   bottom: 0;
@@ -37,4 +38,11 @@ body {
 #themeStyle p {
   margin: 0 10%;
   text-indent:5%;
+}
+
+#firstContent:before {
+  display: block;
+  content: " ";
+  height: 100px;
+  visibility: hidden;
 }

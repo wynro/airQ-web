@@ -1,12 +1,54 @@
 <navbar-top></navbar-top>
 
 <div id="symptomsStyle" class="container-fluid">
-  <br><br>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  <br><br>
-  <br><p>aosidjasoidjasdoasdsada</p>
-  <br><br><br><br><br><br>
-  <br><p>aosidjasoidjasdoasdsada</p>
+
+  <h1 id="firstContent">Feeling odd? Help us collect your symptoms with this form:</h1>
+
+  <form role="form" ng-submit="sendSymptom()">
+    <div class="form-group">
+      <label for="cough">How much are you coughing today?</label>
+      <select id="cough" class="form-control" ng-model="cough" ng-options=
+          "x for x in intensity" required>
+        <option value="" disabled selected>Choose the intensity</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="airLackness">Do you feel a lack of air?</label>
+      <select id="airLackness" class="form-control" ng-model="airLackness" ng-options=
+          "x for x in intensity" required>
+        <option value="" disabled selected>Choose the intensity</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="wheezing">Any wheezing today?</label>
+      <select id="wheezing" class="form-control" ng-model="wheezing" ng-options=
+          "x for x in intensity" required>
+        <option value="" disabled selected>Choose the intensity</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="sneezing">How much are you sneezing today?</label>
+      <select id="sneezing" class="form-control" ng-model="sneezing" ng-options=
+          "x for x in intensity" required>
+        <option value="" disabled selected>Choose the intensity</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="obstruction">Can you breath easily today?</label>
+      <select id="obstruction" class="form-control" ng-model="obstruction" ng-options=
+          "x for x in intensity" required>
+        <option value="" disabled selected>Choose the intensity</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="itchy">Do you feel itchy eyes?</label>
+      <select id="itchy" class="form-control" ng-model="itchy" ng-options=
+          "x for x in intensity" required>
+        <option value="" disabled selected>Choose the intensity</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+  </form>
 
 
 

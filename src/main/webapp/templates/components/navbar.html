@@ -3,75 +3,14 @@
  * FILENAME: navbar.html
  * DESCRIPTION: This class contains the 'navbar.html' content.
  -->
-<!--menu -->
-<nav ng-if="!activeSession()" class="navbar navbar-inverse font" id="navbarOut">
-  <div class="container">
-    <!-- home action -->
-    <a class="navbar-brand" ng-href="#/{{home}}" rel="home">
-      <img src="img/logo_cloudrobe_c.png" id="logoMenuCloudRobe">
-    </a>
-    <!-- NavBar collapsed-->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse"
-              data-target="#myNavbar">
-        <!-- collapsed icon -->
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-
-      </button>
-    </div>
-    <!-- default navBar -->
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <!-- navbar session OFF -->
-      <!-- dropdown menu -->
-      <ul class="nav navbar-nav navbar-right nav-main">
-        <li><a href="#/legal">Legal</a></li>
-        <li><a href="#/about">About us</a></li>
-        <li>
-          <div class="divider"></div>
-        </li>
-        <li><a href="#/signUp">Sign up</a></li>
-        <li><a href="#/login">Log In</a></li>
-      </ul>
-
-    </div>
-  </div>
-
-</nav>
-
-<nav ng-if="activeSession()" class="navbar navbar-inverse font" id="navbarIn">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
-    <!-- home action -->
-    <a class="navbar-brand" ng-href="#/{{home}}" rel="home">
-      <img src="img/logo_cloudrobe_c.png" id="logoMenuCloudRobe">
-    </a>
-    <!-- NavBar collapsed-->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse"
-              data-target="#myNavbar">
-        <!-- collapsed icon -->
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-
-      </button>
-    </div>
-    <!-- default navBar -->
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <!-- navbar session OFF -->
-      <!-- dropdown menu -->
-      <ul class="nav navbar-nav navbar-right nav-main">
-        <li><a href="#/legal">Legal</a></li>
-        <li><a href="#/about">About us</a></li>
-        <li>
-          <div class="divider"></div>
-        </li>
-        <li><a href="#/settings">{{username}}</a></li>
-        <li><a href="#/starter" ng-click="logout()">Logout</a></li>
-      </ul>
-
+      <!-- home action -->
+      <a class="navbar-brand" href="#/starter" rel="home">
+        AirQ
+        <!--<img src="img/logo_cloudrobe_c.png" id="logoMenuAirQ">-->
+      </a>
     </div>
   </div>
-
 </nav>

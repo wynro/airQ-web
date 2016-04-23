@@ -6,15 +6,35 @@
 
 body {
   background-image: url("../img/background.jpg");
-  background-position: center center;
+  background-position: center 14%;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  font-family: 'Roboto', sans-serif;
 }
 #themeStyle {
   position: absolute;
   bottom: 0;
   right: 0;
   left: 0;
-  height: 0;
+  height: 50%;
+  background-color: whitesmoke;
+}
+
+#themeStyle .row{
+  padding: 5% 0;
+  text-align: center;
+}
+#themeStyle a{
+  background-color: #677bdf;
+}
+
+#themeStyle a:hover{
+  background-color: #6a98ff;
+  color: #fff;
+}
+
+#themeStyle p {
+  margin: 0 10%;
+  text-indent:5%;
 }

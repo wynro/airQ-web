@@ -4,4 +4,4 @@
  * DESCRIPTION: This class contains all the services.
  */
 
-angular.module('cloudRobeApp')
+angular.module('AirQApp');

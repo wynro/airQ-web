@@ -4,10 +4,10 @@
  * DESCRIPTION: This class contains all the directives.
  */
 
-angular.module('cloudRobeApp')
+angular.module('AirQApp')
 
     // include the 'navbar.html' into the <navbar> tag
-    .directive('navbar', function () {
+    .directive('navbarTop', function () {
         return {
             restrict: 'E',
             templateUrl: 'templates/components/navbar.html'

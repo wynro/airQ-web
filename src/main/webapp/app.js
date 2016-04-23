@@ -14,15 +14,12 @@ angular.module('AirQApp', ['ui.router'])
             url: "/starter",
             templateUrl: "templates/starter.html"
         })
-        //about screen
-        .state('about', {
-            url: "/about",
-            templateUrl: "templates/about.html"
-        })
-        //legal screen
-        .state('legal', {
-            url: "/legal",
-            templateUrl: "templates/legal.html"
+
+        //insert symptoms screen
+        .state('symptoms', {
+            url: "/symptoms",
+            templateUrl: "templates/symptoms.html",
+            controller: "symptomsCtrl"
         });
         
         $urlRouterProvider.otherwise('starter');

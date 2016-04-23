@@ -1,10 +1,19 @@
-#logoMenuAirQ {
-  max-width:140px;
-  margin-top: -16px;
+#logoFooterNasa {
+  max-width:50px;
+  margin-top: -5px;
 }
+
+#logoFooterSpaceApps {
+  max-width:70px;
+  margin-top: -6px;
+}
+
 #navbarBottom {
-  background-color: #677bdf !important;
-  border-color: #6262c3 !important;
+  background-color: #5155a3 !important;
+  border-color: #5155a3 !important;
   margin: 0;
   border-radius: 0;
+}
+#navbarBottom p {
+  margin-top: 1%;
 }

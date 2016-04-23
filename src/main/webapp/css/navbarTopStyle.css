@@ -1,8 +1,10 @@
 #logoMenuAirQ {
-  max-width:140px;
+  max-width:115px;
   margin-top: -16px;
 }
+
 #navbarTop {
-  background-color: #677bdf !important;
-  border-color: #6262c3 !important;
+  min-height: 80px;
+  background-color: #5155a3 !important;
+  border-color: #5155a3 !important;
 }

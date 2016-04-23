@@ -34,7 +34,10 @@ object AircheckBuild extends Build {
         "org.scalatra" %% "scalatra-json" % ScalatraVersion,
         "org.json4s"   %% "json4s-jackson" % "3.3.0",
         "org.json4s" %% "json4s-native" % "3.3.0",
-        "postgresql" % "postgresql" % "9.1-901.jdbc4"
+        "org.squeryl" %% "squeryl" % "0.9.5-7",
+        "postgresql" % "postgresql" % "9.1-901.jdbc4",
+        "c3p0" % "c3p0" % "0.9.1.2"
+
       ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
         Seq(

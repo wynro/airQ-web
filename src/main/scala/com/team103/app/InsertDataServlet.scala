@@ -1,6 +1,7 @@
 package com.team103.app
 
 import com.team103.model._
+import com.team103.database.DatabaseSessionSupport
 import grizzled.slf4j.Logger
 import org.json4s.{DefaultFormats, Formats}
 import org.json4s.jackson.JsonMethods._
@@ -9,10 +10,11 @@ import org.json4s.MappingException
 import org.scalatra._
 import org.scalatra.json._
 
+
 /**
   * Insert data from user
   */
-class InsertDataServlet extends AircheckStack with JacksonJsonSupport {
+class InsertDataServlet extends AircheckStack with JacksonJsonSupport with DatabaseSessionSupport{
 
   def logger = Logger[InsertDataServlet]
   protected implicit val jsonFormats: Formats = DefaultFormats

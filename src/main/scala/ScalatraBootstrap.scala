@@ -1,9 +1,16 @@
 import com.team103.app._
-import org.scalatra._
+import com.team103.config.DatabaseInit
 import javax.servlet.ServletContext
+import org.scalatra._
 
-class ScalatraBootstrap extends LifeCycle {
+class ScalatraBootstrap extends LifeCycle with DatabaseInit {
+
   override def init(context: ServletContext) {
+    configureDb()
     context.mount(new InsertDataServlet, "/insert")
+  }
+
+  override def destroy(context:ServletContext) {
+    closeDbConnection()
   }
 }

@@ -26,6 +26,6 @@ object ResponseDAO {
     * @return all the responses in the database
     */
   def findAll(): List[Response] = {
-
+    List[Response]()
   }
 }

@@ -11,5 +11,4 @@ angular.module('AirQApp')
         // boolean to hide or show the "view map" button
         $scope.ipActive = authIp.getIpAuth();
 
-
     }]);

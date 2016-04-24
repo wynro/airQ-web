@@ -67,3 +67,16 @@ ul.example {
 a {
   cursor: pointer;
 }
+
+
+@media only screen and (max-width: 991px) {
+  #themeStyle a {
+    margin: 1%;
+  }
+  #themeStyle {
+    height: 70%;
+  }
+  .form-control {
+    width: 80%;
+  }
+}

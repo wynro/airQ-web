@@ -1,6 +1,14 @@
 #eventsStyle {
   text-align: center;
   background-color: whitesmoke;
+
+  margin: 0 auto;
+  height: 91%;
+  padding: 20px 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
 }
 #eventsStyle button{
   margin: 1%;
@@ -68,4 +76,10 @@
   width: 100px;
   height: 100px;
   background: url("../img/volcano_grey.png") 0 0;
+}
+
+@media only screen and (max-width: 380px) {
+  #eventsStyle {
+    height: 100%;
+  }
 }

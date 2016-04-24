@@ -1,4 +1,4 @@
-package com.team103.config
+package com.team103.model
 
 import java.util.Date
 import java.sql.Timestamp

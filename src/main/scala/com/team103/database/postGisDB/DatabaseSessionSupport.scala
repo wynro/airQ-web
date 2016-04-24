@@ -1,8 +1,10 @@
-package com.team103.database
+package com.team103.database.postGisDB
 
 import org.squeryl.Session
 import org.squeryl.SessionFactory
 import org.scalatra._
+import org.squeryl.PrimitiveTypeMode._
+
 
 object DatabaseSessionSupport {
   val key = {

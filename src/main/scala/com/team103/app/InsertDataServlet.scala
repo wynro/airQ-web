@@ -1,7 +1,7 @@
 package com.team103.app
 
 import com.team103.config._
-import com.team103.database.DatabaseSessionSupport
+import com.team103.database.postGisDB.DatabaseSessionSupport
 import com.team103.model._
 import grizzled.slf4j.Logger
 import java.util.Date

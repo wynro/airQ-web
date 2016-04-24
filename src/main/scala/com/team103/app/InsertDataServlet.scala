@@ -34,6 +34,12 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
     "obstruction"->2,
     "itchy"->7,
     "airQuality"->10)
+  def events = Map[String,Int](
+    "fire" -> 1,
+    "tornado" -> 2,
+    "earthquake"->3,
+    "volcano" -> 4)
+
   protected implicit val jsonFormats: Formats = DefaultFormats
 
   /** POST method to introduce data for environment conditions */
@@ -49,13 +55,14 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
       val result = extractEvent(environment)
       transaction{
         IPDAO.insert(new IP(ip,new Timestamp(System.currentTimeMillis)))
-        ResponseDAO.insert(new Response(0,true,new Timestamp(System.currentTimeMillis),lat,long,result.asInstanceOf[Int]))
+        ResponseDAO.insert(new Response(0,true,new Timestamp(System.currentTimeMillis),lat,long,events(result).asInstanceOf[Int]))
       }
       logger.info("This is result: " + result)
       sendCartoDB(createURL(lat,long,result,"InsertEnvironment",index))
       Ok()
     } catch {
       case e:Exception => {
+        logger.info(e)
         logger.debug("Exception while parsing the body")
         BadRequest()
       }

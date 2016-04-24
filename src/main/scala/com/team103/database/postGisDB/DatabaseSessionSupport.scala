@@ -1,4 +1,4 @@
-package com.team103.database
+package com.team103.database.postGisDB
 
 import org.squeryl.Session
 import org.squeryl.SessionFactory

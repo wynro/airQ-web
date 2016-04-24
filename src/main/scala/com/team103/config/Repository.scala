@@ -1,5 +1,6 @@
 package com.team103.config
 
+import com.team103.model.Response
 import org.squeryl.PrimitiveTypeMode._
 import org.squeryl.Schema
 

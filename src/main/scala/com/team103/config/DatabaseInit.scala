@@ -38,6 +38,7 @@ trait DatabaseInit {
 
     SessionFactory.concreteFactory = Some(() => connection)
 
+    /** Datbase connection */
     def connection = {
       logger.info("Creating connection with c3po connection pool")
       Session.create(cpds.getConnection, new PostgreSqlAdapter)

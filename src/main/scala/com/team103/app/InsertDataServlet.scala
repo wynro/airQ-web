@@ -17,6 +17,7 @@ import org.squeryl.PrimitiveTypeMode._
 import scalaj.http._
 
 
+
 /**
   * @author Team 103
   * @version 0.0.1

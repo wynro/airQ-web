@@ -12,6 +12,12 @@ import org.squeryl.annotations.Column
   * @version 0.0.1
   *
   *  Represent a user response
+  * @param id identificator
+  * @param isEvent indicate if is an event
+  * @param timeStamp creation date
+  * @param locX coordinate X
+  * @param locY coordinate Y
+  * @param value value of quality
   */
 class Response(
   val id: Long,

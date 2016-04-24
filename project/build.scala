@@ -39,7 +39,6 @@ object AircheckBuild extends Build {
         "postgresql" % "postgresql" % "9.1-901.jdbc4",
         "c3p0" % "c3p0" % "0.9.1.2",
         "org.scalaj" %% "scalaj-http" % "2.3.0"
-
       ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
         Seq(

@@ -1,11 +1,17 @@
+/*
+ * AUTHOR: Team 103
+ * FILENAME: viewDataStyle.css
+ * DESCRIPTION: This file contains the "viewData.html" style.
+ */
+
 #viewDataStyle {
   background-color: whitesmoke;
 }
-
 #viewDataStyle .dataMap {
   text-align: center;
 }
 
+/* active color tablink */
 .w3-border-custom {
   border-color: #677bdf !important;
 }

@@ -1,7 +1,23 @@
+/*
+ * AUTHOR: Team 103
+ * FILENAME: eventsStyle.css
+ * DESCRIPTION: This file contains the "events.html" style.
+ */
+
+/* fix the 100% of the height container style */
 #eventsStyle {
   text-align: center;
   background-color: whitesmoke;
+  margin: 0 auto;
+  height: 91%;
+  padding: 20px 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
 }
+
+/* button style colors*/
 #eventsStyle button{
   margin: 1%;
   background-color: #677bdf;
@@ -12,7 +28,7 @@
 }
 
 
-
+/* image style of events icons*/
 .earthquakeOn{
   cursor: pointer;
   display: inline-block;
@@ -68,4 +84,11 @@
   width: 100px;
   height: 100px;
   background: url("../img/volcano_grey.png") 0 0;
+}
+
+/* fix the 100% of the height container style */
+@media only screen and (max-width: 380px) {
+  #eventsStyle {
+    height: 100%;
+  }
 }

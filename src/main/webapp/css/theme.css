@@ -1,7 +1,7 @@
 /*
  * AUTHOR: Team 103
  * FILENAME: theme.css
- * DESCRIPTION: This class contains the global style.
+ * DESCRIPTION: This file contains the global style.
  */
 
 /* body background and font style */
@@ -64,6 +64,20 @@ ul.example {
   margin: 0 0 5px;
 }
 
+/* cursor pointer appearance over 'a' tags */
 a {
   cursor: pointer;
+}
+
+/* responsive handling of forms, container and buttons */
+@media only screen and (max-width: 991px) {
+  #themeStyle a {
+    margin: 1%;
+  }
+  #themeStyle {
+    height: 70%;
+  }
+  .form-control {
+    width: 80%;
+  }
 }

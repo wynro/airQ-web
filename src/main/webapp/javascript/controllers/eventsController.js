@@ -1,13 +1,14 @@
 /*
  * AUTHOR: Team 103
- * FILENAME: symptomsController.js
- * DESCRIPTION: This file contains the "symptoms.html" controller.
+ * FILENAME: eventsController.js
+ * DESCRIPTION: This file contains the "events.html" controller.
  */
 
 angular.module('AirQApp')
 
     .controller('eventsCtrl', ['$scope','eventInformation','geolocation', function($scope,eventInformation,geolocation){
 
+        // variabes to handling the active color of events icons
         $scope.earthquake = false;
         $scope.volcano = false;
         $scope.tornado = false;

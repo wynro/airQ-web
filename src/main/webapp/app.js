@@ -21,10 +21,11 @@ angular.module('AirQApp', ['ui.router','geolocation'])
             templateUrl: "templates/events.html"
         })
 
-        //viewDara screen
+        //viewData screen
         .state('viewData', {
             url: "/viewData",
-            templateUrl: "templates/viewData.html"
+            templateUrl: "templates/viewData.html",
+            controller: "viewDataCtrl"
         })
 
         //symptoms symptoms screen

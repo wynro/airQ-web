@@ -5,7 +5,7 @@
 #symptomsStyle button{
   background-color: #677bdf;
 }
-#symptomsStyle button{
+#symptomsStyle button:hover{
   background-color: #6a98ff;
   color: #fff;
 }

@@ -26,4 +26,42 @@ angular.module('AirQApp')
             }
         }
 
+    })
+
+    // 'authIp' service manage the information IP data of the application
+    .factory('authIp', function ($http) {
+
+        var IPAuth = false;
+
+        return {
+            //
+            isIpAuth: function (dataInfo) {
+
+                var json = 'http://ipv4.myexternalip.com/json';
+                $http.get(json).then(function(result) {
+                    console.log(result.data.ip);
+                    debugger;
+
+                    $http({
+                        method: 'POST',
+                        url: 'map',
+                        data: JSON.stringify(result.data.ip),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).success(function (data) {
+                        debugger;
+                        IPAuth = true;
+                    }).error(function (data) {
+                        debugger;
+                    });
+                });
+            },
+
+            //
+            getIpAuth: function () {
+                return IPAuth;
+            }
+        }
+    
     });

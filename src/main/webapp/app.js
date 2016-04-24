@@ -12,7 +12,10 @@ angular.module('AirQApp', ['ui.router','geolocation'])
         //starter screen
         .state('starter', {
             url: "/starter",
-            templateUrl: "templates/starter.html"
+            templateUrl: "templates/starter.html",
+            onEnter: function (authIp) {
+                authIp.isIpAuth()
+            }
         })
 
         //events screen

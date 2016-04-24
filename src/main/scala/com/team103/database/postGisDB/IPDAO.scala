@@ -7,18 +7,26 @@ import org.squeryl.PrimitiveTypeMode._
 
 object IPDAO {
 
-  def rep = Repository.ips
+  def repo = Repository.ips
+
   /**
     * @param ip ip to insert
     */
   def insert(ip: IP) = {
-    rep.insert(ip)
+    repo.insert(ip)
   }
 
   /**
     * @param ip ip to delete
     */
   def delete(ip: String) = {
-    rep.deleteWhere(d => d.ip === ip)
+    repo.deleteWhere(d => d.ip === ip)
+  }
+
+  /**
+    * @return all the ips in the database
+    */
+  def findAll(): List[IP] = {
+    from(repo)(s => select(s)).toList
   }
 }

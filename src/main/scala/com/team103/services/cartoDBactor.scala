@@ -3,6 +3,7 @@ package com.team103.services
 import _root_.akka.actor.{Actor, ActorRef, ActorSystem}
 import _root_.akka.pattern.ask
 import com.team103.config.ScheduledConfig
+import com.team103.database.postGisDB.ResponseDAO
 import com.team103.model.Response
 import grizzled.slf4j.Logger
 import java.util.Calendar
@@ -18,12 +19,11 @@ import scala.concurrent.duration._
   * not validated yet.
   *
   */
-class DBActor extends Actor {
+class cartoDBactor extends Actor {
 
-  def logger = Logger[DBActor]
+  def logger = Logger[cartoDBactor]
 
-  /** TODO: swap repo to verification repo */
-  //def desUserRepo = DBconnection.desUserRepo
+  def repo = ResponseDAO
 
   /** Abstract method inherited from Actor. When message comes the actor invokes
     * the db check method
@@ -31,26 +31,27 @@ class DBActor extends Actor {
   def receive = {
     case ScheduledConfig.CHECK_DATA_MESSAGE => {
       logger.info("[PB]: Deleting data from CartoDB")
-      //checkData
+      checkData
     }
   }
 
   /** Checks the accounts that aren't validated yet, deleting every account which
     * hasn't been validated in 7 days
     */
-  protected def checkAccounts = {
-    //val del = desUserRepo.findAll.foreach(checkDate)
-    //logger.info("[PB]: Tuple's deleted from cartoDB -> ", del)
+  protected def checkData = {
+    val responses = repo.findAll
+    responses.map(r => checkDate(r))
+    logger.info("[PB]: Tuple's deleted from cartoDB")
   }
 
   /** Chech the date where an account has been created and if it is not validated
     * this method deletes it
-    * @param user representing the user to check
+    * @param r representing the response to check
     */
   private def checkDate(r:Response) = {
     val now = Calendar.getInstance.getTimeInMillis
-    //if (now * r.timeStamp >= ScheduledConfig.TIME_MILLIS_EXPIRE){
-      //desUserRepo.delete(user.username)
-    //}
+    if ((now - r.timeStamp.getTime) >= ScheduledConfig.TIME_MILLIS_EXPIRE){
+      repo.delete(r.id)
+    }
   }
 }

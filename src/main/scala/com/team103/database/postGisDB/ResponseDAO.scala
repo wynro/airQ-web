@@ -12,20 +12,26 @@ object ResponseDAO {
     * @param r response to insert
     */
   def insert(r: Response): Response = {
-    repo.insert(r)
+    transaction {
+      repo.insert(r)
+    }
   }
 
   /**
     * @param id repsonse identificator to use
     */
   def delete(id: Long) = {
-    repo.deleteWhere(r => r.id === id)
+    transaction {
+      repo.deleteWhere(r => r.id === id)
+    }
   }
 
   /**
     * @return all the responses in the database
     */
   def findAll(): List[Response] = {
-    from(repo)(s => select(s)).toList
+    transaction {
+      from(repo)(s => select(s)).toList
+    }
   }
 }

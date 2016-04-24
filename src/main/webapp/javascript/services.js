@@ -19,7 +19,7 @@ angular.module('AirQApp')
                         coords: dataInfo.coords,
                         ip: result.data.ip
                     };
-                    debugger;
+                    
                     $http({
                         method: 'POST',
                         url: 'insert/symptoms',
@@ -49,7 +49,7 @@ angular.module('AirQApp')
                         coords: dataInfo.coords,
                         ip: result.data.ip
                     };
-                    debugger;
+                    
                     $http({
                         method: 'POST',
                         url: 'insert/environment',
@@ -73,7 +73,7 @@ angular.module('AirQApp')
 
         return {
 
-            // function to know if the user ha
+            // function to know if the user has already sent data 
             isIpAuth: function (dataInfo) {
                 var json = 'http://ipv4.myexternalip.com/json';
                 $http.get(json).then(function(result) {

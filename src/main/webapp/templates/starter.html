@@ -1,11 +1,12 @@
 <!--
  * AUTHOR: Team 103
  * FILENAME: starter.html
- * DESCRIPTION: This class contains the 'starter.html' content page.
+ * DESCRIPTION: This file contains the 'starter.html' content page.
  -->
 
 <div class="container-fluid" id="themeStyle">
 
+  <!-- buttons when the ip is active -->
   <div class="row" ng-if="ipActive">
     <div class="col-md-4">
       <a class="w3-btn w3-round-xxlarge w3-large" href="#/symptoms"><b>INSERT SYMPTOM</b></a>
@@ -18,6 +19,7 @@
     </div>
   </div>
 
+  <!-- buttons when the ip isn't active -->
   <div class="row" ng-if="!ipActive">
     <div class="col-md-6">
       <a class="w3-btn w3-round-xxlarge w3-large" href="#/symptoms"><b>INSERT SYMPTOM</b></a>
@@ -27,6 +29,7 @@
     </div>
   </div>
 
+  <!-- brief description of AirQ -->
   <p><b>AirQ</b> is a web application that allows you to participate in a global registry
     of occurrences, both local occurrences and atmospherical conditions. Thanks to
     you participation, we can create a global map of occurrences and conditions,

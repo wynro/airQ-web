@@ -32,17 +32,21 @@ class MapServlet extends AircheckStack with JacksonJsonSupport with DatabaseSess
       val found = IPDAO.searchByID(ip)
       // IP found
       if (found != null) {
+        logger.info("IP address found!")
         Ok()
       }
       // IP not found
       else {
+       logger.info("IP address not found!")
        BadRequest()
       }
     }catch {
       case e: MappingException => {//Exception while extracting body JSON AST
+        logger.info("Wrong Data format")
         BadRequest("Wrong data format",headers)
       }
       case e: Exception => {//Anything else
+        logger.info("Internal Error")
         InternalServerError(INTERNAL_ERROR_MESSAGE,headers)
       }
     }

@@ -63,3 +63,7 @@ ul.example {
 .example p {
   margin: 0 0 5px;
 }
+
+a {
+  cursor: pointer;
+}

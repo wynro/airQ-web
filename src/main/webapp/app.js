@@ -12,7 +12,11 @@ angular.module('AirQApp', ['ui.router','geolocation'])
         //starter screen
         .state('starter', {
             url: "/starter",
-            templateUrl: "templates/starter.html"
+            templateUrl: "templates/starter.html",
+            controller: 'starterCtrl',
+            onEnter: function (authIp) {
+                authIp.isIpAuth()
+            }
         })
 
         //events screen
@@ -21,10 +25,11 @@ angular.module('AirQApp', ['ui.router','geolocation'])
             templateUrl: "templates/events.html"
         })
 
-        //viewDara screen
+        //viewData screen
         .state('viewData', {
             url: "/viewData",
-            templateUrl: "templates/viewData.html"
+            templateUrl: "templates/viewData.html",
+            controller: "viewDataCtrl"
         })
 
         //symptoms symptoms screen

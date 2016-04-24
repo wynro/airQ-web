@@ -1,0 +1,15 @@
+#viewDataStyle {
+  background-color: whitesmoke;
+}
+
+#viewDataStyle .dataMap {
+  text-align: center;
+}
+
+.w3-border-custom {
+  border-color: #677bdf !important;
+}
+
+#tablink {
+  margin-bottom: 3%;
+}

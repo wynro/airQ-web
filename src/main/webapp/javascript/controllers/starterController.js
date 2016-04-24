@@ -6,8 +6,10 @@
 
 angular.module('AirQApp')
 
-    .controller('symptomsCtrl', ['$scope','information','geolocation', function($scope,information,geolocation){
-
+    .controller('starterCtrl', ['$scope','authIp', function($scope,authIp){
         
+        
+        $scope.ipActive = authIp.getIpAuth();
+
 
     }]);

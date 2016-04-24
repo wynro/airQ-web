@@ -27,6 +27,7 @@ object IPDAO {
     * @param ip ip to use in search
     */
   def searchByID(ip: String) = {
+    logger.info("Searching IP...")
     repo.where(i => i.ip === ip)
   }
   /**

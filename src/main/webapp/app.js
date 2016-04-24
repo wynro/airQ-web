@@ -13,6 +13,7 @@ angular.module('AirQApp', ['ui.router','geolocation'])
         .state('starter', {
             url: "/starter",
             templateUrl: "templates/starter.html",
+            controller: 'starterCtrl',
             onEnter: function (authIp) {
                 authIp.isIpAuth()
             }

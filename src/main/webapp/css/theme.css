@@ -20,7 +20,7 @@ body {
   bottom: 0;
   right: 0;
   left: 0;
-  height: 50%;
+  height: auto;
   background-color: whitesmoke;
 }
 
@@ -38,7 +38,7 @@ body {
 }
 
 #themeStyle p {
-  margin: 0 10%;
+  margin: 0 10% 10% 10%;
   text-indent:5%;
 }
 
@@ -69,13 +69,10 @@ a {
   cursor: pointer;
 }
 
-/* responsive handling of forms, container and buttons */
+/* responsive handling of forms and buttons */
 @media only screen and (max-width: 991px) {
   #themeStyle a {
     margin: 1%;
-  }
-  #themeStyle {
-    height: 70%;
   }
   .form-control {
     width: 80%;

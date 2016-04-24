@@ -1,18 +1,19 @@
 /*
  * AUTHOR: Team 103
- * FILENAME: symptomsController.js
- * DESCRIPTION: This file contains the "symptoms.html" controller.
+ * FILENAME: viewDataController.js
+ * DESCRIPTION: This file contains the "viewData.html" controller.
  */
 
 angular.module('AirQApp')
 
-    .controller('viewDataCtrl', ['$scope', function($scope){
+    .controller('viewDataCtrl', ['$scope', function($scope) {
 
-
+        // variables to handling the view of the different maps
         $scope.airQualityMap = true;
         $scope.eventsMap = false;
         $scope.discordanceMap = false;
-        
+
+        // function that active the view of the [num] map
         $scope.viewMap = function (num) {
             switch (num) {
                 case 1:
@@ -30,7 +31,5 @@ angular.module('AirQApp')
                     $scope.eventsMap = false;
                     $scope.discordanceMap = true;
             }
-            
         };
-
     }]);

@@ -6,48 +6,64 @@
 
 angular.module('AirQApp')
 
-    // 'information' service manage the information data of the application
+    // 'information' service manage the information data symptoms of the application
     .factory('information', function ($http,$state) {
         return {
 
-            // write a feedback
+            // send the information data symptoms to an end-point
             sendInfo: function (dataInfo) {
-                $http({
-                    method: 'POST',
-                    url: 'insert/symptoms',
-                    data: JSON.stringify(dataInfo),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).success(function (data) {
-                    $state.go('viewData');
-                }).error(function (data) {
+                var json = 'http://ipv4.myexternalip.com/json';
+                $http.get(json).then(function(result) {
+                    dataInfo = {
+                        symptoms: dataInfo.symptoms,
+                        coords: dataInfo.coords,
+                        ip: result.data.ip
+                    };
+                    debugger;
+                    $http({
+                        method: 'POST',
+                        url: 'insert/symptoms',
+                        data: JSON.stringify(dataInfo),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).success(function (data) {
+                        $state.go('viewData');
+                    }).error(function (data) {
+                    });
                 });
             }
         }
-
     })
 
-    // 'information' service manage the information data of the application
+    // 'eventInformation' service manage the information data events of the application
     .factory('eventInformation', function ($http,$state) {
         return {
 
-            // write a feedback
+            // send the information data events to an end-point
             sendInfo: function (dataInfo) {
-                $http({
-                    method: 'POST',
-                    url: 'insert/environment',
-                    data: JSON.stringify(dataInfo),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).success(function (data) {
-                    $state.go('viewData');
-                }).error(function (data) {
+                var json = 'http://ipv4.myexternalip.com/json';
+                $http.get(json).then(function(result) {
+                    dataInfo = {
+                        environment: dataInfo.environment,
+                        coords: dataInfo.coords,
+                        ip: result.data.ip
+                    };
+                    debugger;
+                    $http({
+                        method: 'POST',
+                        url: 'insert/environment',
+                        data: JSON.stringify(dataInfo),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).success(function (data) {
+                        $state.go('viewData');
+                    }).error(function (data) {
+                    });
                 });
             }
         }
-
     })
 
     // 'authIp' service manage the information IP data of the application
@@ -56,9 +72,9 @@ angular.module('AirQApp')
         var IPAuth = false;
 
         return {
-            //
-            isIpAuth: function (dataInfo) {
 
+            // function to know if the user ha
+            isIpAuth: function (dataInfo) {
                 var json = 'http://ipv4.myexternalip.com/json';
                 $http.get(json).then(function(result) {
 
@@ -76,10 +92,9 @@ angular.module('AirQApp')
                 });
             },
 
-            //
+            // get the ip auth variable
             getIpAuth: function () {
                 return IPAuth;
             }
         }
-    
     });

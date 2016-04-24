@@ -25,7 +25,7 @@ angular.module('AirQApp')
             $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
         });
 
-        // send the data info form to the information service
+        // send the data symptoms info form to the information service
         $scope.sendSymptom = function () {
             
             var symptomInfo = {

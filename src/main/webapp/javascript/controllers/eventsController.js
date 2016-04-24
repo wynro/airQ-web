@@ -19,26 +19,31 @@ angular.module('AirQApp')
             $scope.coords = {lat:data.coords.latitude, long:data.coords.longitude};
         });
 
+        // function that active the color of the [num] event
         $scope.eventOn = function (num) {
             switch (num) {
+                //earthquake case
                 case 1:
                     $scope.earthquake = true;
                     $scope.volcano = false;
                     $scope.tornado = false;
                     $scope.fire = false;
                     break;
+                //fire case
                 case 2:
                     $scope.earthquake = false;
                     $scope.volcano = false;
                     $scope.tornado = false;
                     $scope.fire = true;
                     break;
+                //tornado case
                 case 3:
                     $scope.earthquake = false;
                     $scope.volcano = false;
                     $scope.tornado = true;
                     $scope.fire = false;
                     break;
+                //volcano case
                 default:
                     $scope.earthquake = false;
                     $scope.volcano = true;
@@ -48,9 +53,10 @@ angular.module('AirQApp')
             }
         };
 
-        // send the data info form to the information service
+        // send the data event info to the eventInformation service
         $scope.sendEvents = function () {
 
+            // transform the event variable values from boolean to integer
             var earthquake = 0;
             var volcano = 0;
             var tornado = 0;
@@ -73,7 +79,7 @@ angular.module('AirQApp')
             };
 
             var dataInfo = {
-                symptoms: conditions,
+                environment: conditions,
                 coords: $scope.coords
 
             };

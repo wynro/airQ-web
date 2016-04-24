@@ -1,3 +1,11 @@
 #symptomsStyle {
   background-color: whitesmoke;
 }
+
+#symptomsStyle button{
+  background-color: #677bdf;
+}
+#symptomsStyle button{
+  background-color: #6a98ff;
+  color: #fff;
+}

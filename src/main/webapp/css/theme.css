@@ -4,6 +4,7 @@
  * DESCRIPTION: This class contains the global style.
  */
 
+/* body background and font style */
 body {
   background-image: url("../img/background.jpg");
   background-position: center 14%;
@@ -13,6 +14,7 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+/* home bottom half section */
 #themeStyle {
   position: absolute;
   bottom: 0;
@@ -22,6 +24,7 @@ body {
   background-color: whitesmoke;
 }
 
+/* buttons section */
 #themeStyle .row{
   padding: 5% 0;
   text-align: center;
@@ -29,17 +32,7 @@ body {
 #themeStyle a{
   background-color: #677bdf;
 }
-
 #themeStyle a:hover{
-  background-color: #6a98ff;
-  color: #fff;
-}
-
-button{
-  background-color: #677bdf;
-}
-
-button{
   background-color: #6a98ff;
   color: #fff;
 }
@@ -49,6 +42,7 @@ button{
   text-indent:5%;
 }
 
+/* insert a gap behind the navbarTop */
 #firstContent:before {
   display: block;
   content: " ";
@@ -56,10 +50,10 @@ button{
   visibility: hidden;
 }
 
+/* form section */
 .form-control {
   width: 15%;
 }
-
 ul.example {
   color: rgba(6, 6, 6, 0.46);
   margin: 1%;

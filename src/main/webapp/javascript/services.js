@@ -39,8 +39,6 @@ angular.module('AirQApp')
 
                 var json = 'http://ipv4.myexternalip.com/json';
                 $http.get(json).then(function(result) {
-                    console.log(result.data.ip);
-                    debugger;
 
                     $http({
                         method: 'POST',
@@ -50,10 +48,8 @@ angular.module('AirQApp')
                             'Content-Type': 'application/json'
                         }
                     }).success(function (data) {
-                        debugger;
                         IPAuth = true;
                     }).error(function (data) {
-                        debugger;
                     });
                 });
             },

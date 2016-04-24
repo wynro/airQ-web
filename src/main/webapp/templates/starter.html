@@ -6,7 +6,7 @@
 
 <div class="container-fluid" id="themeStyle">
 
-  <div class="row">
+  <div class="row" ng-if="ipActive">
     <div class="col-md-4">
       <a class="w3-btn w3-round-xxlarge w3-large" href="#/symptoms"><b>INSERT SYMPTOM</b></a>
     </div>
@@ -15,6 +15,15 @@
     </div>
     <div class="col-md-4">
       <a class="w3-btn w3-round-xxlarge w3-large" href="#/viewData"><b>VIEW DATA</b></a>
+    </div>
+  </div>
+
+  <div class="row" ng-if="!ipActive">
+    <div class="col-md-6">
+      <a class="w3-btn w3-round-xxlarge w3-large" href="#/symptoms"><b>INSERT SYMPTOM</b></a>
+    </div>
+    <div class="col-md-6">
+      <a class="w3-btn w3-round-xxlarge w3-large" href="#/events"><b>INSERT EVENT</b></a>
     </div>
   </div>
 

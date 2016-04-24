@@ -29,10 +29,11 @@ class MapServlet extends AircheckStack with JacksonJsonSupport with DatabaseSess
     val headers = Map[String,String]("Content-Type" -> "text/plain")
     try {
       val ip = parsedBody.extract[String]
-      val found = IPDAO.searchByID(ip)
+      val found = IPDAO.searchByID(ip).toList
       // IP found
-      if (found != null) {
+      if (!found.isEmpty) {
         logger.info("IP address found!")
+        logger.info("Result: " + found)
         Ok()
       }
       // IP not found
@@ -47,6 +48,7 @@ class MapServlet extends AircheckStack with JacksonJsonSupport with DatabaseSess
       }
       case e: Exception => {//Anything else
         logger.info("Internal Error")
+        logger.info(e)
         InternalServerError(INTERNAL_ERROR_MESSAGE,headers)
       }
     }

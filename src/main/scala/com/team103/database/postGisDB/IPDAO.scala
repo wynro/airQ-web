@@ -6,7 +6,6 @@ import org.squeryl.PrimitiveTypeMode._
 
 
 object IPDAO {
-
   def repo = Repository.ips
 
   /**
@@ -20,20 +19,25 @@ object IPDAO {
     * @param ip ip to delete
     */
   def delete(ip: String) = {
-    repo.deleteWhere(d => d.ip === ip)
+    transaction {
+      repo.deleteWhere(d => d.ip === ip)
+    }
   }
 
   /**
     * @param ip ip to use in search
     */
   def searchByID(ip: String) = {
-    logger.info("Searching IP...")
-    repo.where(i => i.ip === ip)
+    transaction {
+      repo.where(i => i.ip === ip)
+    }
   }
   /**
     * @return all the ips in the database
     */
   def findAll(): List[IP] = {
-    from(repo)(s => select(s)).toList
+    transaction {
+      from(repo)(s => select(s)).toList
+    }
   }
 }

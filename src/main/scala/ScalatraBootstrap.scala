@@ -21,7 +21,11 @@ class ScalatraBootstrap extends LifeCycle with DatabaseInit {
     configureDb()
     val session = SessionFactory.newSession
     session.bindToCurrentThread
-    Repository.create
+    try{
+      Repository.create
+    } catch  {
+      case e:Exception => {}
+    }
     session.close
     session.unbindFromCurrentThread
     context.mount(new InsertDataServlet, "/insert")

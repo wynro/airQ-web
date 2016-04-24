@@ -1,11 +1,5 @@
 package com.team103.app
 
-/**
-  * @author Team 103
-  * @version 0.0.1
-  *
-  * Controller that ensure a user has writed the form to see the map
-  */
 import com.team103.config._
 import com.team103.database.postGisDB.DatabaseSessionSupport
 import com.team103.model._
@@ -23,7 +17,10 @@ import org.squeryl.PrimitiveTypeMode._
 
 
 /**
-  * Insert data from user
+  * @author Team 103
+  * @version 0.0.1
+  *
+  * Controller that ensure a user has writed the form to see the map
   */
 class MapServlet extends AircheckStack with JacksonJsonSupport with DatabaseSessionSupport{
 
@@ -36,10 +33,9 @@ class MapServlet extends AircheckStack with JacksonJsonSupport with DatabaseSess
     try {
       val ip = parsedBody.extract[String]
       val found = IPDAO.searchByID(ip).toList
-      // IP found
+      //IP has been found
       if (!found.isEmpty) {
         logger.info("IP address found!")
-        logger.info("Result: " + found)
         Ok()
       }
       // IP not found

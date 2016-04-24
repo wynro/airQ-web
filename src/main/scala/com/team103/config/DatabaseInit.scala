@@ -22,6 +22,9 @@ trait DatabaseInit {
 
   var cpds = new ComboPooledDataSource
 
+  /**
+    *
+    */
   def configureDb() {
     cpds.setDriverClass("org.postgresql.Driver")
     cpds.setJdbcUrl(databaseConnection)

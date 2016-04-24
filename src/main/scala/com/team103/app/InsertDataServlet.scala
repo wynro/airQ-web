@@ -1,11 +1,5 @@
 package com.team103.app
 
-/**
-  * @author Team 103
-  * @version 0.0.1
-  *
-  * Controller that allows user to insert data
-  */
 import com.team103.config._
 import com.team103.database.postGisDB.DatabaseSessionSupport
 import com.team103.model._
@@ -22,7 +16,10 @@ import org.squeryl.PrimitiveTypeMode._
 
 
 /**
-  * Insert data from user
+  * @author Team 103
+  * @version 0.0.1
+  *
+  * Controller that allows user to insert data
   */
 class InsertDataServlet extends AircheckStack with JacksonJsonSupport with DatabaseSessionSupport{
 

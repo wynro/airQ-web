@@ -1,7 +1,7 @@
 <!--
  * AUTHOR: Team 103
- * FILENAME: symptoms.html
- * DESCRIPTION: This file contains the 'symptoms.html' content page.
+ * FILENAME: events.html
+ * DESCRIPTION: This file contains the 'events.html' content page.
  -->
 
 <navbar-top></navbar-top>
@@ -9,6 +9,7 @@
 <div id="eventsStyle" class="container-fluid">
   <h1 id="firstContent">Tell us about the environment surrounding you</h1>
 
+  <!-- icon's section -->
   <p>
     <span ng-class="{earthquakeOn: earthquake,earthquakeOff:!earthquake}"
           ng-click="eventOn(1)"></span>
@@ -20,6 +21,7 @@
           ng-click="eventOn(4)"></span>
   </p>
 
+  <!-- legend's section icon event -->
   <p style="font-size: 70%">
     <b>Legend: </b>
     earthquake<img class="img-responsive" style="display: inline-block;" width="35px"
@@ -31,6 +33,7 @@
     , volcano<img class="img-responsive" style="display: inline-block;" width="25px"
                   height="25px" src="./img/volcano_grey.png" alt="tornado">
   </p>
+
 
   <button ng-click="sendEvents()" class="w3-btn w3-round-xxlarge w3-large">Send information</button>
 

@@ -1,7 +1,7 @@
 <!--
  * AUTHOR: Team 103
- * FILENAME: symptoms.html
- * DESCRIPTION: This file contains the 'symptoms.html' content page.
+ * FILENAME: viewData.html
+ * DESCRIPTION: This file contains the 'viewData.html' content page.
  -->
 
 <navbar-top></navbar-top>
@@ -9,6 +9,7 @@
 <div id="viewDataStyle" class="container-fluid">
   <div id="firstContent" class="w3-container w3-section">
 
+    <!-- tablink section -->
     <div class="w3-row" id="tablink">
       <a ng-click="viewMap(1)">
         <div class="w3-third w3-bottombar w3-hover-light-grey w3-padding"
@@ -24,6 +25,7 @@
       </a>
     </div>
 
+    <!-- airQuality map -->
     <div ng-if="airQualityMap" class="w3-container dataMap w3-animate-opacity">
       <iframe width="90%" height="600" frameborder="0"
               src="https://balaber.cartodb.com/viz/4fbe044e-09b8-11e6-a496-0e674067d321/embed_map"
@@ -31,11 +33,13 @@
               oallowfullscreen msallowfullscreen></iframe>
     </div>
 
+    <!-- events map -->
     <div ng-if="eventsMap" class="w3-container dataMap w3-animate-opacity">
       <iframe width="90%" height="600" frameborder="0"
               src="https://balaber.cartodb.com/viz/c8b32812-09c6-11e6-8f78-0e31c9be1b51/embed_map"
               allowfullscreen webkitallowfullscreen mozallowfullscreen
               oallowfullscreen msallowfullscreen></iframe>
+      <!-- legend's section icon event -->
       <p style="font-size: 70%">
         <b>Legend: </b>
         earthquake<img class="img-responsive" style="display: inline-block;"
@@ -49,6 +53,7 @@
       </p>
     </div>
 
+    <!-- discordance map -->
     <div ng-if="discordanceMap" class="w3-container dataMap w3-animate-opacity">
       <iframe width="90%" height="600" frameborder="0"
               src="https://balaber.cartodb.com/viz/a142b62e-0a04-11e6-b85f-0e787de82d45/embed_map"

@@ -32,4 +32,4 @@ The second type is an iconmap, where icons are enviromental events such as
 a tornado or an eruption of a volcano. This way the user can view in a  
 blink what is happening around all the world.  
 
-![](https://raw.github.com/wynro/spaceapps-web/blob/master/src/res/images/IconMap.png)
+![](https://github.com/wynro/spaceapps-web/blob/master/src/res/images/IconMap.png)

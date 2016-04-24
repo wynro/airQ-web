@@ -1,3 +1,68 @@
 #eventsStyle {
+  background-color: whitesmoke;
+}
 
+#earthquakeOn{
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: -3px;
+  width: 16px;
+  height: 16px;
+  background: url("../img/earthquake.png") 0 0;
+}
+#earthquakeOff{
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: -3px;
+  width: 16px;
+  height: 16px;
+  background: url("../img/earthquake_grey.png") 0 0;
+}
+#fireOn{
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: -3px;
+  width: 16px;
+  height: 16px;
+  background: url("../img/fire.png") 0 0;
+}
+#fireOff{
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: -3px;
+  width: 16px;
+  height: 16px;
+  background: url("../img/fire_grey.png") 0 0;
+}
+#tornadoOn{
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: -3px;
+  width: 16px;
+  height: 16px;
+  background: url("../img/tornado.png") 0 0;
+}
+#tornadoOff{
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: -3px;
+  width: 16px;
+  height: 16px;
+  background: url("../img/tornado_grey.png") 0 0;
+}
+#volcanoOn{
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: -3px;
+  width: 16px;
+  height: 16px;
+  background: url("../img/volcano.png") 0 0;
+}
+#volcanoOff{
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: -3px;
+  width: 16px;
+  height: 16px;
+  background: url("../img/volcano_grey.png") 0 0;
 }

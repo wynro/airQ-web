@@ -23,6 +23,7 @@ angular.module('AirQApp', ['ui.router','geolocation'])
         .state('events', {
             url: "/events",
             templateUrl: "templates/events.html"
+            controller: ""
         })
 
         //viewData screen

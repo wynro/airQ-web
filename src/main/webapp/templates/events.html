@@ -7,6 +7,18 @@
 <navbar-top></navbar-top>
 
 <div id="eventsStyle" class="container-fluid">
+  <h1 id="firstContent">Tell us about the environment surrounding you:</h1>
+
+  <p>
+    <span ng-class="{earthquakeOn: earthquake,earthquakeOff:!earthquake}"
+          ng-click="eventOn(1)"></span>
+    <span ng-class="{fireOn:fire,fireOff:!fire}"
+          ng-click="eventOn(2)"></span>
+    <span ng-class="{tornadoOn:tornado,tornadoOff:!tornado}"
+          ng-click="eventOn(3)"></span>
+    <span ng-class="{volcanoOn:volcano,volcanoOff:!volcano}"
+          ng-click="eventOn(4)"></span>
+  </p>
 
 </div>
 

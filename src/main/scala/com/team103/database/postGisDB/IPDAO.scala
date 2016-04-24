@@ -24,6 +24,12 @@ object IPDAO {
   }
 
   /**
+    * @param ip ip to use in search
+    */
+  def searchByID(ip: String) = {
+    repo.where(i => i.ip === ip)
+  }
+  /**
     * @return all the ips in the database
     */
   def findAll(): List[IP] = {

@@ -25,6 +25,7 @@ class ScalatraBootstrap extends LifeCycle with DatabaseInit {
     session.close
     session.unbindFromCurrentThread
     context.mount(new InsertDataServlet, "/insert")
+    context.mount(new MapServlet, "/map")
   }
 
   override def destroy(context:ServletContext) {

@@ -12,7 +12,6 @@ angular.module('AirQApp')
 
             // write a feedback
             sendInfo: function (dataInfo) {
-                debugger;
                 $http({
                     method: 'POST',
                     url: 'insert/symptoms',

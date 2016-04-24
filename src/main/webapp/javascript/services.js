@@ -7,7 +7,7 @@
 angular.module('AirQApp')
 
     // 'information' service manage the information data of the application
-    .factory('information', function ($http) {
+    .factory('information', function ($http,$state) {
         return {
 
             // write a feedback
@@ -20,6 +20,7 @@ angular.module('AirQApp')
                         'Content-Type': 'application/json'
                     }
                 }).success(function (data) {
+                    $state.go('viewData');
                 }).error(function (data) {
                 });
             }

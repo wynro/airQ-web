@@ -1,0 +1,47 @@
+<!--
+ * AUTHOR: Team 103
+ * FILENAME: symptoms.html
+ * DESCRIPTION: This file contains the 'symptoms.html' content page.
+ -->
+
+<navbar-top></navbar-top>
+
+<div id="viewDataStyle" class="container-fluid">
+  <div id="firstContent" class="w3-container w3-section">
+
+    <div class="w3-row" id="tablink">
+      <a ng-click="viewMap(1)">
+        <div class="w3-third w3-bottombar w3-hover-light-grey w3-padding"
+             ng-class="{'w3-border-custom':airQualityMap}">Air quality map</div>
+      </a>
+      <a ng-click="viewMap(2)">
+        <div class="w3-third w3-bottombar w3-hover-light-grey w3-padding"
+             ng-class="{'w3-border-custom':eventsMap}">Events map</div>
+      </a>
+      <a ng-click="viewMap(3)">
+        <div class="w3-third w3-bottombar w3-hover-light-grey w3-padding"
+             ng-class="{'w3-border-custom':discordanceMap}">Discordance map</div>
+      </a>
+    </div>
+
+    <div ng-if="airQualityMap" class="w3-container dataMap w3-animate-opacity">
+      <iframe width="90%" height="600" frameborder="0"
+              src="https://balaber.cartodb.com/viz/4fbe044e-09b8-11e6-a496-0e674067d321/embed_map"
+              allowfullscreen webkitallowfullscreen mozallowfullscreen
+              oallowfullscreen msallowfullscreen></iframe>
+    </div>
+
+    <div ng-if="eventsMap" class="w3-container w3-animate-opacity">
+      <h2>Paris</h2>
+      <p>Paris is the capital of France.</p>
+    </div>
+
+    <div ng-if="discordanceMap" class="w3-container w3-animate-opacity">
+      <h2>Tokyo</h2>
+      <p>Tokyo is the capital of Japan.</p>
+    </div>
+
+  </div>
+</div>
+
+<navbar-bottom></navbar-bottom>

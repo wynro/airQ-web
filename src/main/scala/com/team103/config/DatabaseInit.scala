@@ -23,7 +23,8 @@ trait DatabaseInit {
   var cpds = new ComboPooledDataSource
 
   /**
-    *
+    * Configure driver and credentials for Database along with the connections
+    * pool
     */
   def configureDb() {
     cpds.setDriverClass("org.postgresql.Driver")
@@ -43,6 +44,7 @@ trait DatabaseInit {
     }
   }
 
+  /** Close database connection */
   def closeDbConnection() {
     logger.info("Closing c3po connection pool")
     cpds.close()

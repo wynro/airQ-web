@@ -7,11 +7,6 @@ import grizzled.slf4j.Logger
 import java.net._
 import java.sql.Timestamp
 import java.util.Date
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.params.HttpMethodParams
-import org.apache.commons.httpclient.methods.GetMethod;
 import org.json4s.{DefaultFormats, Formats}
 import org.json4s.jackson.JsonMethods._
 import org.json4s.JsonAST._
@@ -19,6 +14,7 @@ import org.json4s.MappingException
 import org.scalatra._
 import org.scalatra.json._
 import org.squeryl.PrimitiveTypeMode._
+import scalaj.http._
 
 
 /**
@@ -40,12 +36,20 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
     "airQuality"->10)
   protected implicit val jsonFormats: Formats = DefaultFormats
 
+  /** POST method to introduce data for environment conditions */
   post("/environment") {
     try {
       val (lat,long) = extractCoords(parsedBody)
-      val environment = parsedBody.extract[Environment]//Extract symptoms from data body
-    //  val svc = url("http://api.hostip.info/country.php")
-
+      val environment = (parsedBody \ "environment").extract[Environment]//Extract env from data body
+      val selectCartoDB = createURL(lat,long,"5","SelectEnvironment",11)
+      val response = sendCartoDB(selectCartoDB)
+      var index = extractIndex(response.body)
+      index = index + 1
+      logger.info("Index: " + index)
+      val result = extractEvent(environment)
+      logger.info("This is result: " + result)
+      sendCartoDB(createURL(lat,long,result,"InsertEnvironment",index))
+      Ok()
     } catch {
       case e:Exception => {
         logger.debug("Exception while parsing the body")
@@ -53,14 +57,21 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
     }
   }
 
+  /** POST methods to introduce data for symptoms from user */
   post("/symptoms") {
     try {
       logger.info("Inside symptoms: " + parsedBody)
       val (lat,long) = extractCoords(parsedBody)
       val symptoms = (parsedBody \ "symptoms").extract[Symptoms]//Extract symptoms from data body
-      val selectCartoDB = createURL(lat,long,5,"Insert",11)
-      sendCartoDB(selectCartoDB)
-      Ok("Everything updated")
+      val selectCartoDB = createURL(lat,long,"5","SelectSymptoms",11)
+      val response = sendCartoDB(selectCartoDB)
+      var index = extractIndex(response.body)
+      index = index + 1
+      logger.info("Index: " + index)
+      val result = calculateFormula(symptoms)
+      logger.info("This is result: " + result)
+      sendCartoDB(createURL(lat,long,result.toString,"InsertSymptoms",index))
+      Ok()
     } catch {
       case e:Exception => {
         logger.debug("Exception while parsing the body")
@@ -79,45 +90,80 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
   /**
     * Calculate formula for quality
     */
-  private def calculateFormula(symptoms:Symptoms) = {
-    var sum =  symptoms.cough * weight("cough") +
-      symptoms.airLackness * weight("airLackness") +
-      symptoms.wheezing * weight("weezing") +
-      symptoms.obstruction * weight("obstruction") +
-      symptoms.itchy * weight("itchy") +
-      symptoms.sneezing * weight("sneezing") +
-      symptoms.airQuality * weight("airQuality")
+  private def calculateFormula(symptoms:Symptoms):Int = {
+    logger.info("This is product: " + symptoms)
+    var sum =  symptoms.cough * weight("cough").asInstanceOf[Int]
+      sum += symptoms.airLackness * weight("airLackness").asInstanceOf[Int]
+      sum += symptoms.wheezing * weight("wheezing").asInstanceOf[Int]
+      sum += symptoms.obstruction * weight("obstruction").asInstanceOf[Int]
+      sum += symptoms.itchy * weight("itchy").asInstanceOf[Int]
+      sum += symptoms.sneezing * weight("sneezing").asInstanceOf[Int]
+      sum += (11 - symptoms.airQuality) * weight("airQuality").asInstanceOf[Int]
+    logger.info("This is sum: " + sum)
+    var acum = 0
+    var fieldsAsPairs = for (field <- symptoms.getClass.getDeclaredFields) yield {
+      field.setAccessible(true)
+      if (field.get(symptoms).asInstanceOf[Int] > 0) acum += weight(field.getName).asInstanceOf[Int]
+    }
+    logger.info("This is acum: " + acum)
+    sum/acum
+  }
+
+  /** Extract the environmental condition */
+  private def extractEvent(environment:Environment):String = {
+    var event = ""
+    var fieldsAsPairs = for (field <- environment.getClass.getDeclaredFields) yield {
+      field.setAccessible(true)
+      if (field.get(environment).asInstanceOf[Int] > 0) event = field.getName
+    }
+    logger.info("This is event: " + event)
+    event
   }
 
   /**
     * Create url insert cartoDB
     */
-  private def createURL(lat:Double,long:Double,value:Int,queryType:String,max:Int):String = {
+  private def createURL(lat:Double,long:Double,value:String,queryType:String,max:Int):String = {
     queryType match {
-      case "Insert" => {
-        val firstString = "INSERT INTO "+ ApiValues.API_TABLE + " VALUES("+max+","
-        val substitute =  " ST_SetSRID(ST_MakePoint("+lat+","+long+"),4326),ST_SetSRID(ST_MakePoint("+lat+","+long+"),3857),"+value+")"
-        firstString+substitute
+      case "InsertSymptoms" => {
+        val firstString = "INSERT%20INTO%20"+ ApiValues.API_TABLE_AIR + "%20VALUES%28"+max+","
+        val substitute =  "%20ST_SetSRID%28ST_MakePoint%28"+lat+","+long+"%29,4326%29,"
+        val lastString = "ST_SetSRID%28ST_MakePoint%28"+lat+","+long+"%29,3857%29,"+value+"%29"
+        firstString+substitute+lastString+ "&api_key="+ApiValues.API_KEY
       }
-      case "Select" => {
+      case "SelectSymptoms" => {
         /*TODO: Poner + 1*/
-        "SELECT MAX(cartodb_id) from " + ApiValues.API_TABLE
+        "SELECT%20MAX%28cartodb_id%29%20from%20" + ApiValues.API_TABLE_AIR + "&api_key="+ApiValues.API_KEY
+      }
+      case "InsertEnvironment" => {
+        val firstString = "INSERT%20INTO%20"+ ApiValues.API_TABLE_EVENT + "%20VALUES%28"+max+","
+        val substitute =  "%20ST_SetSRID%28ST_MakePoint%28"+lat+","+long+"%29,4326%29,"
+        val lastString = "ST_SetSRID%28ST_MakePoint%28"+lat+","+long+"%29,3857%29,"+value+"%29"
+        firstString+substitute+lastString+ "&api_key="+ApiValues.API_KEY
+      }
+      case "SelectEnvironment" => {
+        "SELECT%20MAX%28cartodb_id%29%20from%20" + ApiValues.API_TABLE_EVENT + "&api_key="+ApiValues.API_KEY
       }
     }
 
   }
 
-  private def sendCartoDB(query:String){
+  /** Returns the response from GET request */
+  private def sendCartoDB(query:String):HttpResponse[String] = {
     logger.info(query)
-    var client = new HttpClient()
-    var method = new GetMethod("https://balaber.cartodb.com/api/v2/sql")
-    method.addRequestHeader("Accept","application/json")
-    var params = new HttpMethodParams()
-    params.setParameter("q",query)
-    params.setParameter("api_key",ApiValues.API_KEY)
-    method.setParams(params)
-    logger.info("This is the uri: " + method.getURI.toString)
-    client.executeMethod(method)
-    logger.info("This is the response" + response)
+    val url = "https://balaber.cartodb.com/api/v2/sql?q=" + query
+    val response: HttpResponse[String] = scalaj.http.Http(url).asString
+    logger.info("This is the response" + response.body)
+    response
+  }
+
+  /** Extract index for insert on database by doin GET request */
+  private def extractIndex(response:String):Int = {
+    val myJSON = parse(response)
+    logger.info("This is json in JSON format: " + myJSON)
+    logger.info("This is my json: " + (myJSON \ "rows")(0) )
+    val totalNumber = (((myJSON \ "rows")(0)) \ "max").extract[Int]
+    logger.info("This is totalNumber: " + totalNumber)
+    totalNumber
   }
 }

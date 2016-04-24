@@ -18,6 +18,7 @@ object DatabaseSessionSupport {
   }
 }
 
+/** Trait implementing database connection */
 trait DatabaseSessionSupport { this: ScalatraBase =>
   import DatabaseSessionSupport._
 

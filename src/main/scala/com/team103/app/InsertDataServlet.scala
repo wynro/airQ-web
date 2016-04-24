@@ -1,7 +1,7 @@
 package com.team103.app
 
 import com.team103.config._
-import com.team103.database.postGisDB.DatabaseSessionSupport
+import com.team103.database.postGisDB._
 import com.team103.model._
 import grizzled.slf4j.Logger
 import java.net._
@@ -42,7 +42,7 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
     try {
       val (lat,long,ip) = extractFields(parsedBody)
       transaction{
-        IPDAO.insert(new IP(ip,new Timestamp(System.getCurrentTimeMillis)))
+        IPDAO.insert(new IP(ip,new Timestamp(System.currentTimeMillis)))
       }
       val environment = (parsedBody \ "environment").extract[Environment]//Extract env from data body
       val selectCartoDB = createURL(lat,long,"5","SelectEnvironment",11)
@@ -68,7 +68,7 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
       logger.info("Inside symptoms: " + parsedBody)
       val (lat,long,ip) = extractFields(parsedBody)
       transaction{
-        IPDAO.insert(new IP(ip,new Timestamp(System.getCurrentTimeMillis)))
+        IPDAO.insert(new IP(ip,new Timestamp(System.currentTimeMillis)))
       }
       val symptoms = (parsedBody \ "symptoms").extract[Symptoms]//Extract symptoms from data body
       val selectCartoDB = createURL(lat,long,"5","SelectSymptoms",11)
@@ -94,7 +94,7 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
   private def extractFields(parsedBody:JValue):(Double,Double,String) = {
     val coordinates = parsedBody \ "coords"
     val ip = parsedBody \ "ip"
-    ((coordinates \ "lat").extract[Double],(coordinates \ "long").extract[Double],ip)
+    ((coordinates \ "lat").extract[Double],(coordinates \ "long").extract[Double],ip.extract[String])
   }
 
   /**

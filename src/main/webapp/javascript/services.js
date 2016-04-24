@@ -28,6 +28,28 @@ angular.module('AirQApp')
 
     })
 
+    // 'information' service manage the information data of the application
+    .factory('eventInformation', function ($http,$state) {
+        return {
+
+            // write a feedback
+            sendInfo: function (dataInfo) {
+                $http({
+                    method: 'POST',
+                    url: 'insert/environment',
+                    data: JSON.stringify(dataInfo),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).success(function (data) {
+                    $state.go('viewData');
+                }).error(function (data) {
+                });
+            }
+        }
+
+    })
+
     // 'authIp' service manage the information IP data of the application
     .factory('authIp', function ($http) {
 

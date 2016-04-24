@@ -33,17 +33,14 @@ class cartoDBactor extends Actor {
     }
   }
 
-  /** Checks the accounts that aren't validated yet, deleting every account which
-    * hasn't been validated in 7 days
-    */
+  /** Checks data for remove old values */
   protected def checkData = {
     val responses = repo.findAll
     responses.map(r => checkDate(r))
     logger.info("[PB]: Tuple's deleted from cartoDB")
   }
 
-  /** Chech the date where an account has been created and if it is not validated
-    * this method deletes it
+  /** Check a data an delete if it has been inserted 24 hours ago 
     * @param r representing the response to check
     */
   private def checkDate(r:Response) = {

@@ -33,18 +33,15 @@ class IPactor extends Actor {
     }
   }
 
-  /** Checks the accounts that aren't validated yet, deleting every account which
-    * hasn't been validated in 7 days
-    */
+  /** Checks the IPs that have written the database values */
   protected def checkIPs = {
     val ips = repo.findAll
     ips.map(r => checkIP(r))
     logger.info("[PB]: Tuple's deleted from DB")
   }
 
-  /** Chech the date where an account has been created and if it is not validated
-    * this method deletes it
-    * @param r representing the response to check
+  /** Check database IPs and delete these that have been used 24 hours ago.
+    * @param r representing the IP to check
     */
   private def checkIP(r:IP) = {
     val now = Calendar.getInstance.getTimeInMillis

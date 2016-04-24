@@ -1,7 +1,13 @@
+/*
+ * AUTHOR: Team 103
+ * FILENAME: symptomsStyle.css
+ * DESCRIPTION: This file contains the "symptoms.html" style.
+ */
+
+/* colors handling of symptoms page */
 #symptomsStyle {
   background-color: whitesmoke;
 }
-
 #symptomsStyle button{
   background-color: #677bdf;
 }

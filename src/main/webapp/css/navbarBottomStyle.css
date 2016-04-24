@@ -1,13 +1,19 @@
+/*
+ * AUTHOR: Team 103
+ * FILENAME: navbarBottomStyle.css
+ * DESCRIPTION: This file contains the "navbarBottom.html" style.
+ */
+
+/* logos handling style*/
 #logoFooterNasa {
   max-width:50px;
   margin-top: -5px;
 }
-
 #logoFooterSpaceApps {
   max-width:70px;
   margin-top: -6px;
 }
-
+/* color style of navbar */
 #navbarBottom {
   background-color: #1b234d !important;
   border-color: #111123 !important;

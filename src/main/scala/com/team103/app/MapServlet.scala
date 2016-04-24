@@ -25,7 +25,7 @@ class MapServlet extends AircheckStack with JacksonJsonSupport with DatabaseSess
   protected implicit val jsonFormats: Formats = DefaultFormats
   val INTERNAL_ERROR_MESSAGE = "Oops so awkward, something went wrong"
 
-  get("/*"){
+  post("/*"){
     val headers = Map[String,String]("Content-Type" -> "text/plain")
     try {
       val ip = parsedBody.extract[String]

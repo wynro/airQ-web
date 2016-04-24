@@ -40,7 +40,10 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
   /** POST method to introduce data for environment conditions */
   post("/environment") {
     try {
-      val (lat,long) = extractCoords(parsedBody)
+      val (lat,long,ip) = extractFields(parsedBody)
+      transaction{
+        IPDAO.insert(new IP(ip,new Timestamp(System.getCurrentTimeMillis)))
+      }
       val environment = (parsedBody \ "environment").extract[Environment]//Extract env from data body
       val selectCartoDB = createURL(lat,long,"5","SelectEnvironment",11)
       val response = sendCartoDB(selectCartoDB)
@@ -54,6 +57,7 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
     } catch {
       case e:Exception => {
         logger.debug("Exception while parsing the body")
+        BadRequest()
       }
     }
   }
@@ -62,7 +66,10 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
   post("/symptoms") {
     try {
       logger.info("Inside symptoms: " + parsedBody)
-      val (lat,long) = extractCoords(parsedBody)
+      val (lat,long,ip) = extractFields(parsedBody)
+      transaction{
+        IPDAO.insert(new IP(ip,new Timestamp(System.getCurrentTimeMillis)))
+      }
       val symptoms = (parsedBody \ "symptoms").extract[Symptoms]//Extract symptoms from data body
       val selectCartoDB = createURL(lat,long,"5","SelectSymptoms",11)
       val response = sendCartoDB(selectCartoDB)
@@ -76,6 +83,7 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
     } catch {
       case e:Exception => {
         logger.debug("Exception while parsing the body")
+        BadRequest()
       }
     }
   }
@@ -83,9 +91,10 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
   /**
     * Extract the coordinates from the request
     */
-  private def extractCoords(implicit parsedBody:JValue):(Double,Double) = {
+  private def extractFields(parsedBody:JValue):(Double,Double,String) = {
     val coordinates = parsedBody \ "coords"
-    ((coordinates \ "lat").extract[Double],(coordinates \ "long").extract[Double])
+    val ip = parsedBody \ "ip"
+    ((coordinates \ "lat").extract[Double],(coordinates \ "long").extract[Double],ip)
   }
 
   /**

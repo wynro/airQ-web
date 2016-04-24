@@ -6,6 +6,12 @@ import org.squeryl.Session
 import org.squeryl.SessionFactory
 import org.slf4j.LoggerFactory
 
+/**
+  * @author Team 103
+  * @version 0.0.1
+  *
+  * Inicializates database
+  */
 trait DatabaseInit {
   val logger = LoggerFactory.getLogger(getClass)
   val databaseHost = "localhost"

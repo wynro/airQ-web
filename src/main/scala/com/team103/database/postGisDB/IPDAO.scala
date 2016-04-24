@@ -4,7 +4,12 @@ import com.team103.config.Repository
 import com.team103.model.IP
 import org.squeryl.PrimitiveTypeMode._
 
-
+/**
+  * @author Team 103
+  * @version 0.0.1
+  *
+  *  Data access object for IPs
+  */
 object IPDAO {
   def repo = Repository.ips
 

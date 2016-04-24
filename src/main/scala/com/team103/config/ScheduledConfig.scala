@@ -1,14 +1,14 @@
 package com.team103.config
 
+/**
+  * @author Team 103
+  * @version 0.0.1
+  *
+  *  Singleton wrapper for shared values on actor services
+  */
 import scala.concurrent.duration.FiniteDuration
 import scala.concurrent.duration._
 
-/**
-* @author Dodo Technologies
-* @version 0.1.0
-*
-*  Singleton wrapper for shared values on actor services
-*/
 object ScheduledConfig {
   // Data check config
   val CHECK_DATA_MESSAGE = '1'

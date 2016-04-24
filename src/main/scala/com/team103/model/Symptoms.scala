@@ -1,7 +1,10 @@
 package com.team103.model
 
 /**
-  * Case class grouping all symptoms
+  * @author Team 103
+  * @version 0.0.1
+  *
+  *  Join Symptoms list
   */
 case class Symptoms(
   var cough: Int = 0,

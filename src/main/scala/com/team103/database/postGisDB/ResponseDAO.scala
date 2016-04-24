@@ -4,7 +4,12 @@ import com.team103.config.Repository
 import com.team103.model.Response
 import org.squeryl.PrimitiveTypeMode._
 
-
+/**
+  * @author Team 103
+  * @version 0.0.1
+  *
+  *  Response Data Access object
+  */
 object ResponseDAO {
 
   def repo = Repository.responses

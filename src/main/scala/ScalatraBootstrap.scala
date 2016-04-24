@@ -38,7 +38,7 @@ class ScalatraBootstrap extends LifeCycle with DatabaseInit {
     session.unbindFromCurrentThread
     context.mount(new InsertDataServlet, "/insert")
     context.mount(new MapServlet, "/map")
-    context.mount(new DefaultServlet, "/")
+    //context.mount(new DefaultServlet, "/")
   }
 
   /** Close database connnection */

@@ -17,7 +17,6 @@ import org.squeryl.PrimitiveTypeMode._
 import scalaj.http._
 
 
-
 /**
   * @author Team 103
   * @version 0.0.1
@@ -41,9 +40,6 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
   post("/environment") {
     try {
       val (lat,long,ip) = extractFields(parsedBody)
-      transaction{
-        IPDAO.insert(new IP(ip,new Timestamp(System.currentTimeMillis)))
-      }
       val environment = (parsedBody \ "environment").extract[Environment]//Extract env from data body
       val selectCartoDB = createURL(lat,long,"5","SelectEnvironment",11)
       val response = sendCartoDB(selectCartoDB)
@@ -51,6 +47,10 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
       index = index + 1
       logger.info("Index: " + index)
       val result = extractEvent(environment)
+      transaction{
+        IPDAO.insert(new IP(ip,new Timestamp(System.currentTimeMillis)))
+        ResponseDAO.insert(new Response(0,true,new Timestamp(System.currentTimeMillis),lat,long,result.asInstanceOf[Int]))
+      }
       logger.info("This is result: " + result)
       sendCartoDB(createURL(lat,long,result,"InsertEnvironment",index))
       Ok()
@@ -67,9 +67,6 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
     try {
       logger.info("Inside symptoms: " + parsedBody)
       val (lat,long,ip) = extractFields(parsedBody)
-      transaction{
-        IPDAO.insert(new IP(ip,new Timestamp(System.currentTimeMillis)))
-      }
       val symptoms = (parsedBody \ "symptoms").extract[Symptoms]//Extract symptoms from data body
       val selectCartoDB = createURL(lat,long,"5","SelectSymptoms",11)
       val response = sendCartoDB(selectCartoDB)
@@ -77,6 +74,10 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
       index = index + 1
       logger.info("Index: " + index)
       val result = calculateFormula(symptoms)
+      transaction{
+        IPDAO.insert(new IP(ip,new Timestamp(System.currentTimeMillis)))
+        ResponseDAO.insert(new Response(0,false,new Timestamp(System.currentTimeMillis),lat,long,result.asInstanceOf[Int]))
+      }
       logger.info("This is result: " + result)
       sendCartoDB(createURL(lat,long,result.toString,"InsertSymptoms",index))
       Ok()
@@ -94,6 +95,7 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
   private def extractFields(parsedBody:JValue):(Double,Double,String) = {
     val coordinates = parsedBody \ "coords"
     val ip = parsedBody \ "ip"
+    logger.info(ip)
     ((coordinates \ "lat").extract[Double],(coordinates \ "long").extract[Double],ip.extract[String])
   }
 
@@ -148,7 +150,7 @@ class InsertDataServlet extends AircheckStack with JacksonJsonSupport with Datab
       case "InsertEnvironment" => {
         val firstString = "INSERT%20INTO%20"+ ApiValues.API_TABLE_EVENT + "%20VALUES%28"+max+","
         val substitute =  "%20ST_SetSRID%28ST_MakePoint%28"+lat+","+long+"%29,4326%29,"
-        val lastString = "ST_SetSRID%28ST_MakePoint%28"+lat+","+long+"%29,3857%29,"+value+"%29"
+        val lastString = "ST_SetSRID%28ST_MakePoint%28"+lat+","+long+"%29,3857%29,\'"+value+"\'%29"
         firstString+substitute+lastString+ "&api_key="+ApiValues.API_KEY
       }
       case "SelectEnvironment" => {

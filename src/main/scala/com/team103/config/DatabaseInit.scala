@@ -23,7 +23,7 @@ trait DatabaseInit {
   var cpds = new ComboPooledDataSource
 
   /**
-    *
+    * Configure Database
     */
   def configureDb() {
     cpds.setDriverClass("org.postgresql.Driver")
@@ -37,12 +37,14 @@ trait DatabaseInit {
 
     SessionFactory.concreteFactory = Some(() => connection)
 
+    /** Datbase connection */
     def connection = {
       logger.info("Creating connection with c3po connection pool")
       Session.create(cpds.getConnection, new PostgreSqlAdapter)
     }
   }
 
+  /** Close DB connection */
   def closeDbConnection() {
     logger.info("Closing c3po connection pool")
     cpds.close()

@@ -6,7 +6,9 @@ import java.sql.Timestamp
   * @author Team 103
   * @version 0.0.1
   *
-  *  Represent IP model
+  * @constructor Represent IP model
+  * @param ip ip direcction
+  * @param timeStamp creation date
   */
   case class IP(
   var ip: String,

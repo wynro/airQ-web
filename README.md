@@ -30,5 +30,6 @@ quality, or just check and compare the zones the user wants.
 
 The second type is an iconmap, where icons are enviromental events such as  
 a tornado or an eruption of a volcano. This way the user can view in a  
-blink what is happening around all the world.
+blink what is happening around all the world.  
 
+![](https://raw.github.com/wynro/spaceapps-web/blob/master/src/res/images/IconMap.png)

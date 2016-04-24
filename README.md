@@ -26,4 +26,9 @@ This map informs the user how the air quality is in a 0-10 scale. With this
 heatmap, the user can easily view the zones with the best or worst air  
 quality, or just check and compare the zones the user wants.  
 
+* **Iconmap**
+
+The second type is an iconmap, where icons are enviromental events such as  
+a tornado or an eruption of a volcano. This way the user can view in a  
+blink what is happening around all the world.
 

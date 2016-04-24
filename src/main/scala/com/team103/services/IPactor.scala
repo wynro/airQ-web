@@ -12,12 +12,10 @@ import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 
 /**
-  * @author Dodo Technologies
-  * @version 0.1.0
+  * @author Team 103
+  * @version 0.0.1
   *
-  * Class representing an asynchronous actor for checking all accounts which are
-  * not validated yet.
-  *
+  *  Service to update IP database
   */
 class IPactor extends Actor {
 

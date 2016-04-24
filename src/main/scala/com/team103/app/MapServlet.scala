@@ -17,7 +17,10 @@ import org.squeryl.PrimitiveTypeMode._
 
 
 /**
-  * Insert data from user
+  * @author Team 103
+  * @version 0.0.1
+  *
+  * Controller that ensure a user has writed the form to see the map
   */
 class MapServlet extends AircheckStack with JacksonJsonSupport with DatabaseSessionSupport{
 
@@ -30,10 +33,9 @@ class MapServlet extends AircheckStack with JacksonJsonSupport with DatabaseSess
     try {
       val ip = parsedBody.extract[String]
       val found = IPDAO.searchByID(ip).toList
-      // IP found
+      //IP has been found
       if (!found.isEmpty) {
         logger.info("IP address found!")
-        logger.info("Result: " + found)
         Ok()
       }
       // IP not found

@@ -8,8 +8,10 @@ import org.squeryl.KeyedEntity
 import org.squeryl.annotations.Column
 
 /**
-  * If isEvent == 1, then is event and value are 1,2,3...
-  * If isEvent == 0, then is atmospheric and value are 0-10
+  * @author Team 103
+  * @version 0.0.1
+  *
+  *  Represent a user response
   */
 class Response(
   val id: Long,

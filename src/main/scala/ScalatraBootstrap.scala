@@ -21,9 +21,9 @@ class ScalatraBootstrap extends LifeCycle with DatabaseInit {
     configureDb()
     val session = SessionFactory.newSession
     session.bindToCurrentThread
-    try{
+    try {
       Repository.create
-    } catch  {
+    } catch {
       case e:Exception => {}
     }
     session.close
